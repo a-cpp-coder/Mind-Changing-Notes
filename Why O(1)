@@ -1,0 +1,29 @@
+RTOS (VxWorks) need 2 things: 
+- Determinism - do the work in order (no race condition) and return the correct result
+- Predictable - in predictable time (soft - hundreds ns, hard - tens of ns)
+
+'Predictable' need O(1) Algorithms:
+O(1) means constant time, not fast/efficient/optimal. 
+           (constant time here means constant numbers of steps, real life execution time depends on step complexity & HW)
+
+We usually have a wrong assumption that O(1) is more efficient than O(N) (that is not True!)
+Sometime, adding complexity will lead to more efficient algorithm (know the correct/shorter way to go) 
+-> shorter execution time
+
+Eg O(1) in C code:
+int add(int[] array){
+    int sum =0;
+    for (int i=0;i<ARRAY_MAX_SIZE;i++){
+      sum= sum + (i<array.length?array[i]:0);
+    }
+    return sum;
+}
+
+The above algorithm is much less efficient than O(n) but it does execute at constant times/constant numbers of step:
+no matter what the size of array is then => O(1):
+
+Other: The complexity is O(ARRAY_MAX_SIZE). If ARRAY_MAX_SIZE is a constant, then O(ARRAY_MAX_SIZE) == O(1) 
+Big-O complexity ignores the complexity of constant steps, A division (slow) is just as "complex" as an increment (fast).:
+
+Any Way: 1 thing in RTOS to know is O(1) Algorithms
+
